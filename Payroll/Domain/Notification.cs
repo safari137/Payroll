@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Payroll.Domain.Bills;
 
 namespace Payroll.Domain
@@ -7,15 +8,11 @@ namespace Payroll.Domain
     {
     	public static DateTime GetSoonestBillDueDate()
     	{
-    		var soonestBillDue = new DateTime(3000, 12, 31);
-    		
-    		foreach (var bill in Bill.Bills)
-    		{
-    			if (soonestBillDue > bill.DueDate)
-    				soonestBillDue = bill.DueDate;
-    		}
-    		
-    		return soonestBillDue;
+    	    var soonestBillDue = Bill.Bills
+    	        .OrderByDescending(b => b.DueDate)
+    	        .FirstOrDefault();
+
+    	    return soonestBillDue != null ? soonestBillDue.DueDate : new DateTime(1900, 1, 1);
     	}
 
         public static int? GetPayrollDueDays()

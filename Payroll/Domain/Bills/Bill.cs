@@ -1,13 +1,4 @@
-﻿/*
- * Created by SharpDevelop.
- * User: mobile
- * Date: 2/6/2015
- * Time: 2:07 PM
- * 
- * To change this template use Tools | Options | Coding | Edit Standard Headers.
- */
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -76,21 +67,8 @@ namespace Payroll.Domain.Bills
             this.IsPaid = isPaid;
         }        
 
-        // Add to the list of bills
-        //public void Add(DateTime _due)
-        //{
-        //    if (this.Id <= 0)
-        //        return;
-
-        //    this.DueDate = _due;
-
-        //    Bills.Add(this);
-        //    Data.SaveBill(this);
-        //}
         public void Add(VendorPayee vendor, decimal amount, DateTime dueDate)
         {
-            //this.Id = Global.ID_Manager.Bill.GetAvailableID();
-
             this.Vendor = vendor;
             this.Amount = amount;
             this.DueDate = dueDate;
@@ -111,17 +89,9 @@ namespace Payroll.Domain.Bills
         }
 
             
-        public static Bill Find(int _id)
+        public static Bill Find(int id)
         {
-            if (Bills == null)
-                return null;
-				
-            foreach (Bill b in Bills)
-            {
-                if (b.Id == _id)
-                    return b;
-            }
-            return null;				 
+            return Bills?.FirstOrDefault(b => b.Id == id);				 
         }
 			
         // Delete the Bill from Bills List

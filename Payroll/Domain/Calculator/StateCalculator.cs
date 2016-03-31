@@ -15,14 +15,17 @@
 	 			
 	 		// Formula given by State of VA
 	 		// 26 is # of pay periods
-	 			
+            decimal payPeriodsPerYear = 0;
+
             if (Settings.Payfrequency == PayFrequency.BiWeekly)
-    	 		gross = (gross * 26) - (3000 + (_stateExemptions * 930));   	 		
+                payPeriodsPerYear = 26; 		
     	 		
-            else if (Settings.Payfrequency == PayFrequency.Weekly) 
-                gross = (gross * 52) - (3000 + (_stateExemptions * 930));
-                	
-                
+            else if (Settings.Payfrequency == PayFrequency.Weekly)
+                payPeriodsPerYear = 52;
+
+            gross = (gross * payPeriodsPerYear) - (3000 + (_stateExemptions * 930));
+
+
             if (gross < 0)
             {
                 _stateWithholding = 0.00m;
@@ -58,12 +61,9 @@
 	 			
 	 		// Calculate the tax for the year
 	 		_stateWithholding += (excess * _stateTaxRate);
+
 	 		// Divide it back into payperiods
-            if (Settings.Payfrequency == PayFrequency.BiWeekly)
-                _stateWithholding /= 26;
-              
-            else if (Settings.Payfrequency == PayFrequency.Weekly)                
-                _stateWithholding /= 52;
+            _stateWithholding /= payPeriodsPerYear;
                
 	 		return _stateWithholding.Roundv2();
 	 	}

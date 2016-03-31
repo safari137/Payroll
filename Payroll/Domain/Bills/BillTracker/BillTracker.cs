@@ -10,10 +10,10 @@ namespace Payroll.Domain.Bills.BillTracker
         public Bill StateBill { get; private set; }
         public Bill VaSuiBill { get; private set; }
         
-        private DateTime _federalDueDate;
-        private DateTime _stateDueDate;
-        private DateTime _futaDueDate;
-        private DateTime _vaSuiDueDate;
+        private readonly DateTime _federalDueDate;
+        private readonly DateTime _stateDueDate;
+        private readonly DateTime _futaDueDate;
+        private readonly DateTime _vaSuiDueDate;
         
         public BillTracker()
 		{

@@ -41,10 +41,7 @@ namespace Payroll.Domain.Calculator
                 var paycheckData = context.Paychecks
                     .Where(p => p.PayDate >= beginDate && p.PayDate <= endDate)
                     .Where(p => p.EmployeeId == employeeId)
-                    .ToList();
-
-                if (paycheckData == null)
-                    return 0M;               
+                    .ToList();            
 
                 foreach (var paycheck in paycheckData)
                     gross += paycheck.Gross;

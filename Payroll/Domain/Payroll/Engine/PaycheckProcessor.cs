@@ -6,8 +6,8 @@ namespace Payroll.Domain.Payroll.Engine
     {
         public Paycheck ProcessedPaycheck { get; private set; }
 
-        private Employee _employee;
-        private ITaxCalculator _taxcalculator;
+        private readonly Employee _employee;
+        private readonly ITaxCalculator _taxcalculator;
 
         public PaycheckProcessor(Employee employee, ITaxCalculator taxcalculator)
         {
@@ -29,10 +29,7 @@ namespace Payroll.Domain.Payroll.Engine
             }
 
             // Calc Gross Income
-            if (_employee.IsSalary)
-                gross = GrossCalculator.Calculate(_employee.Wage);
-            else
-                gross = GrossCalculator.Calculate(_employee.Wage, _employee.Hours);
+            gross = _employee.IsSalary ? GrossCalculator.Calculate(_employee.Wage) : GrossCalculator.Calculate(_employee.Wage, _employee.Hours);
 
             var paycheck = _taxcalculator.Calculate(_employee, gross);
 

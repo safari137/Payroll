@@ -9,7 +9,7 @@
         public decimal Calculate(Employee employee, decimal gross)
         {            
             // Excess is for calculating taxes above the tax bracket minimum
-            decimal excess = 0m;
+            var excess = 0m;
             // IRS allows us to remove exemptions from the gross income before calculating
             gross = gross - (employee.FedExemptions * _exemptionValue);
 

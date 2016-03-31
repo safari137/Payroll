@@ -5,7 +5,7 @@
         // Salary version
         public static decimal Calculate(decimal salary)
         {
-            decimal gross = 0m;
+            var gross = 0m;
 
             if (Settings.Payfrequency == PayFrequency.Monthly)
             {

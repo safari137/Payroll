@@ -9,9 +9,9 @@ namespace Payroll.Domain.Payroll.Engine
 
     public class PayrollEngine
     {         
-        private ITaxCalculator _taxCalculator;
+        private readonly ITaxCalculator _taxCalculator;
 
-        private BillTracker _billTracker = new BillTracker();
+        private readonly BillTracker _billTracker = new BillTracker();
 
         public PayrollEngine(ITaxCalculator taxCalculator)
         {
@@ -20,9 +20,9 @@ namespace Payroll.Domain.Payroll.Engine
         
         public void Start()
         {
-            using (var context = new PayrollContext())
+            using (var payrollContext = new PayrollContext())
             {
-                var paylist = context.Employees
+                var paylist = payrollContext.Employees
                     .Where(e => e.IsSalary || (e.Wage > 0 && e.Hours > 0))
                     .ToList();
 
@@ -35,7 +35,7 @@ namespace Payroll.Domain.Payroll.Engine
                     employee.YearToDateIncome += currentPaycheck.Gross;
                     employee.Hours = 0M;
 
-            	    context.Paychecks.Add(currentPaycheck);
+            	    payrollContext.Paychecks.Add(currentPaycheck);
                     _billTracker.AppendBill(currentPaycheck);
                 }
 
@@ -44,7 +44,7 @@ namespace Payroll.Domain.Payroll.Engine
                 Settings.CloseDate = (Settings.CloseDate.AddDays(14));
 
                 // Save Data            
-                context.SaveChanges();
+                payrollContext.SaveChanges();
             }
             
             Data.SaveSettings();              
