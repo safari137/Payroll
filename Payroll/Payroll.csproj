@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectGuid>{FAF2003D-3D73-49D9-A159-1ED26819B601}</ProjectGuid>
+    <ProjectTypeGuids>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Payroll</RootNamespace>
+    <AssemblyName>Payroll</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <NoWin32Manifest>False</NoWin32Manifest>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>False</DebugSymbols>
+    <DebugType>None</DebugType>
+    <Optimize>True</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <DefineConstants>TRACE</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net40\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataContext\CopyEmployee.cs" />
+    <Compile Include="DataContext\PayrollContext.cs" />
+    <Compile Include="Domain\Bills\Bill.cs" />
+    <Compile Include="Domain\Bills\BillTracker\BillTracker.cs" />
+    <Compile Include="Domain\Bills\BillTracker\UpdateBills.cs" />
+    <Compile Include="Domain\Calculator\FederalCalculator.cs" />
+    <Compile Include="Domain\Calculator\FederalTaxBracket.cs" />
+    <Compile Include="Domain\Calculator\FutaCalculator.cs" />
+    <Compile Include="Domain\Calculator\MedicareCalculator.cs" />
+    <Compile Include="Domain\Calculator\SocialSecurityCalculator.cs" />
+    <Compile Include="Domain\Calculator\StateCalculator.cs" />
+    <Compile Include="Domain\Calculator\StateUnemploymentCalculator.cs" />
+    <Compile Include="Domain\Calculator\TaxCalculator2015.cs" />
+    <Compile Include="DataFlatFile\Data.cs" />
+    <Compile Include="DataFlatFile\SettingsData.cs" />
+    <Compile Include="DataFlatFile\TimeTasksData.cs" />
+    <Compile Include="Domain\Employee.cs" />
+    <Compile Include="Domain\Extensions.cs" />
+    <Compile Include="Domain\Global.cs" />
+    <Compile Include="Domain\Calculator\ITaxCalculator.cs" />
+    <Compile Include="Domain\Notification.cs" />
+    <Compile Include="Domain\Payroll\Engine\Calculator.cs" />
+    <Compile Include="Domain\Payroll\Engine\PaycheckProcessor.cs" />
+    <Compile Include="Domain\Settings.cs" />
+    <Compile Include="main.cs" />
+    <Compile Include="UI\Menus\EmployeeActivity\PayEmployees\DisplayPaycheckConsole.cs" />
+    <Compile Include="UI\Menus\EmployeeActivity\PayEmployees\IDisplayPaycheck.cs" />
+    <Compile Include="Domain\Payroll\Paycheck.cs" />
+    <Compile Include="Domain\Payroll\Engine\PayrollEngine.cs" />
+    <Compile Include="Migrations\201504082358167_Initial.cs" />
+    <Compile Include="Migrations\201504082358167_Initial.Designer.cs">
+      <DependentUpon>201504082358167_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="UI\GenericActivities\Activity.cs" />
+    <Compile Include="UI\GenericActivities\DataEntryActivity.cs" />
+    <Compile Include="UI\GenericActivities\GetDateActivity.cs" />
+    <Compile Include="UI\GenericActivities\GetEmployeeIdActivity.cs" />
+    <Compile Include="UI\GenericActivities\GetDecimalActivity.cs" />
+    <Compile Include="UI\GenericActivities\GetStringActivity.cs" />
+    <Compile Include="UI\GenericActivities\GetYesOrNoActivity.cs" />
+    <Compile Include="UI\GenericActivities\GetSocActivity.cs" />
+    <Compile Include="UI\Menus\Bills\BillGetIdActivity.cs" />
+    <Compile Include="UI\Menus\Bills\BillsMenuActivity.cs" />
+    <Compile Include="UI\Menus\Bills\DeleteBillActivity.cs" />
+    <Compile Include="UI\Menus\Bills\ListBillsActivity.cs" />
+    <Compile Include="UI\Menus\Bills\PayBillActivity.cs" />
+    <Compile Include="UI\Menus\EmployeeActivity\AddEmployee\AddEmployeeActivity.cs" />
+    <Compile Include="UI\Menus\EmployeeActivity\AddEmployee\GetFederalExemptionActivity.cs" />
+    <Compile Include="UI\Menus\EmployeeActivity\AddEmployee\GetStateExemptionActivity.cs" />
+    <Compile Include="UI\Menus\EmployeeActivity\PayEmployees\ApproveChecksActivity.cs" />
+    <Compile Include="UI\Menus\EmployeeActivity\PayEmployees\PayEmployeesActivity.cs" />
+    <Compile Include="UI\Menus\EmployeeActivity\DeleteEmployee\DeleteEmployeeActivity.cs" />
+    <Compile Include="UI\Menus\EmployeeActivity\EmployeeMenuActivity.cs" />
+    <Compile Include="UI\Menus\EmployeeActivity\ListEmployees\ListEmployeesActivity.cs" />
+    <Compile Include="UI\Menus\EmployeeActivity\ModifyEmployee\GetModificationStringActivity.cs" />
+    <Compile Include="UI\Menus\EmployeeActivity\ModifyEmployee\ModifyEmployeeActivity.cs" />
+    <Compile Include="UI\Menus\EmployeeActivity\SetHours\GetHoursActivity.cs" />
+    <Compile Include="UI\Menus\EmployeeActivity\SetHours\SetHoursActivity.cs" />
+    <Compile Include="UI\Menus\MainMenu\MainMenuActivity.cs" />
+    <Compile Include="UI\Menus\MenuDataEntryActivity.cs" />
+    <Compile Include="UI\Menus\Notifications\NotificationsActivity.cs" />
+    <Compile Include="UI\Menus\QuitOrBackActivity.cs" />
+    <Compile Include="UI\Menus\Reports\Report940Activity.cs" />
+    <Compile Include="UI\Menus\Reports\Report941Activity.cs" />
+    <Compile Include="UI\Menus\Reports\ReportEmployeeCostActivity.cs" />
+    <Compile Include="UI\Menus\Reports\ReportsMenuActivity.cs" />
+    <Compile Include="UI\Menus\Reports\ReportStateActivity.cs" />
+    <Compile Include="UI\Menus\Reports\ReportW2Activity.cs" />
+    <Compile Include="UI\Menus\Settings\DisplaySettingsActivity.cs" />
+    <Compile Include="UI\Menus\Settings\GetPayFrequencyActivity.cs" />
+    <Compile Include="UI\Menus\Settings\SettingsMenuActivity.cs" />
+    <Compile Include="UI\Menus\Settings\SettingsSetupActivity.cs" />
+    <Compile Include="UI\Tools\ConsoleColorSchemeChanger.cs" />
+    <Compile Include="UI\Tools\DateValidation.cs" />
+    <Compile Include="UI\Tools\NumberValidation.cs" />
+    <Compile Include="UI\Tools\Validation.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\Reports\Report941.cs" />
+    <Compile Include="UI\Reports\ReportBase.cs" />
+    <Compile Include="UI\Reports\Report940.cs" />
+    <Compile Include="UI\Reports\ReportEmployeeCost.cs" />
+    <Compile Include="UI\Reports\ReportEngine.cs" />
+    <Compile Include="UI\Reports\ReportJobCost.cs" />
+    <Compile Include="UI\Reports\ReportW2.cs" />
+    <Compile Include="UI\Reports\StateTaxReport.cs" />
+    <Compile Include="Domain\TimeManagement\Task.cs" />
+    <Compile Include="Domain\TimeManagement\TimeManagement.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201504082358167_Initial.resx">
+      <DependentUpon>201504082358167_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
